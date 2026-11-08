@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <title>Alimentación y switches de la placa BMX-01</title>
+  <defs>
+    <marker id="f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#10233f"/>
+    </marker>
+    <marker id="fr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#b42318"/>
+    </marker>
+  </defs>
+  <rect x="4" y="4" width="992" height="422" rx="22" fill="#ffffff" stroke="#c9d3e0" stroke-width="2"/>
+  <text x="30" y="34" font-size="15" font-weight="700" fill="#10233f">1 · Alimentación: los motores necesitan un puente de H3 a P2</text>
+
+  <rect rx="10" stroke-width="2" x="30" y="60" width="150" height="70" fill="#eef0f3" stroke="#5b6474"/>
+  <text x="45" y="88" font-size="15" font-weight="700" fill="#10233f">USB-C (PC)</text><text x="45" y="108" font-size="12" fill="#2c3e57">5 V · datos</text>
+
+  <rect rx="10" stroke-width="2" x="240" y="60" width="160" height="70" fill="#eef0f3" stroke="#5b6474"/>
+  <text x="255" y="88" font-size="15" font-weight="700" fill="#10233f">CH340C</text><text x="255" y="108" font-size="12" fill="#2c3e57">USB ↔ serie</text>
+
+  <rect rx="10" stroke-width="2" x="240" y="155" width="160" height="70" fill="#eef0f3" stroke="#5b6474"/>
+  <text x="255" y="183" font-size="15" font-weight="700" fill="#10233f">AMS1117</text><text x="255" y="203" font-size="12" fill="#2c3e57">5 V → 3,3 V</text>
+
+  <rect rx="10" stroke-width="2" x="460" y="105" width="170" height="90" fill="#10233f" stroke="#10233f"/>
+  <text x="477" y="140" font-size="15" font-weight="700" fill="#fff">ESP32</text>
+  <text x="477" y="162" font-size="12" fill="#c9d8f0">3,3 V · TX/RX</text>
+
+  <rect rx="10" stroke-width="2" x="240" y="250" width="160" height="70" fill="#eef0f3" stroke="#5b6474"/>
+  <text x="255" y="278" font-size="15" font-weight="700" fill="#10233f">H3 «Salidas»</text><text x="255" y="298" font-size="12" fill="#2c3e57">5V · 3.3V · GND</text>
+
+  <rect rx="10" stroke-width="2" x="460" y="250" width="170" height="70" fill="#fde8e8" stroke="#b42318"/>
+  <text x="475" y="278" font-size="15" font-weight="700" fill="#10233f">P2 (bornera)</text><text x="475" y="298" font-size="12" fill="#2c3e57">entrada de motores</text>
+
+  <rect rx="10" stroke-width="2" x="700" y="200" width="270" height="170" fill="#fde8e8" stroke="#b42318"/>
+  <text x="715" y="228" font-size="15" font-weight="700" fill="#10233f">Riel de motores</text>
+  <text x="715" y="252" font-size="12" fill="#2c3e57">L293 → P1 motor DC</text>
+  <text x="715" y="272" font-size="12" fill="#2c3e57">ULN2003 → H1 paso a paso</text>
+  <text x="715" y="292" font-size="12" fill="#2c3e57">H2 servo (señal GPIO32)</text>
+  <text x="715" y="320" font-size="12" fill="#2c3e57">Sin el puente de H3 a P2</text>
+  <text x="715" y="338" font-size="12" fill="#2c3e57">ningún motor se mueve.</text>
+
+  <path stroke="#10233f" stroke-width="2" fill="none" marker-end="url(#f)" d="M180,95 H238"/>
+  <path stroke="#10233f" stroke-width="2" fill="none" marker-end="url(#f)" d="M110,130 V190 H238"/>
+  <path stroke="#10233f" stroke-width="2" fill="none" marker-end="url(#f)" d="M110,190 V285 H238"/>
+  <path stroke="#10233f" stroke-width="2" fill="none" marker-end="url(#f)" d="M400,95 H430 V135 H458"/>
+  <path stroke="#10233f" stroke-width="2" fill="none" marker-end="url(#f)" d="M400,190 H430 V165 H458"/>
+  <path stroke="#b42318" stroke-width="3" fill="none" stroke-dasharray="8 5" marker-end="url(#fr)" d="M400,285 H458"/>
+  <text x="404" y="345" font-size="13" font-weight="700" fill="#b42318">cable: 5V→+ · GND→−</text>
+  <path stroke="#10233f" stroke-width="2" fill="none" marker-end="url(#f)" d="M630,285 H665 V285 H698"/>
+
+  <line x1="30" y1="385" x2="970" y2="385" stroke="#e1e7ef"/>
+  <text x="30" y="412" font-size="15" font-weight="700" fill="#10233f">2 · Switches:</text>
+  <text x="140" y="412" font-size="12" fill="#2c3e57">SW1: GPIO12 → «BOCINA» o «LIBRE» (cabezal H4)</text>
+  <text x="520" y="412" font-size="12" fill="#2c3e57">SW2: GPIO34 → «BOTONES» o «RECEPTOR» infrarrojo</text>
+</svg>

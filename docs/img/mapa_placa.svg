@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <title>Mapa de la placa BMX-01 con pines GPIO verificados</title>
+  <rect x="4" y="4" width="992" height="692" rx="22" fill="#ffffff" stroke="#c9d3e0" stroke-width="2"/>
+  <rect x="20" y="40" width="960" height="600" rx="16" fill="#f4f7fb" stroke="#1d5fbf" stroke-width="3"/>
+  <text x="30" y="28" font-size="15" font-weight="700" fill="#10233f">Placa BMX-01 · vista superior (esquema, no a escala) · pines verificados</text>
+
+  <!-- Bocina -->
+  <rect fill="#fff1e0" stroke="#c26a00" stroke-width="2" rx="10" x="35" y="55" width="130" height="105"/>
+  <text x="48" y="78" font-size="15" font-weight="700" fill="#10233f">Bocina</text>
+  <text x="48" y="98" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">GPIO12</text>
+  <text x="48" y="116" font-size="12" fill="#2c3e57">vía switch SW1</text>
+  <text x="48" y="134" font-size="11" font-weight="700" fill="#b42318">SW1 en «BOCINA»</text>
+
+  <!-- Sensores -->
+  <rect fill="#e3f4ea" stroke="#1f8a4c" stroke-width="2" rx="10" x="180" y="55" width="300" height="105"/>
+  <text x="193" y="78" font-size="15" font-weight="700" fill="#10233f">Sensores</text>
+  <text x="193" y="98" font-size="12" fill="#2c3e57">Luz (LDR) ........</text><text x="300" y="98" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">GPIO35</text>
+  <text x="193" y="116" font-size="12" fill="#2c3e57">Temp. DS18B20 ..</text><text x="300" y="116" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">GPIO4</text>
+  <text x="193" y="134" font-size="12" fill="#2c3e57">Inclinación ......</text><text x="300" y="134" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">GPIO39</text>
+  <text x="372" y="98" font-size="12" fill="#2c3e57">Potenciómetro</text><text x="372" y="116" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">GPIO36</text>
+
+  <!-- Salidas H3 -->
+  <rect fill="#eef0f3" stroke="#5b6474" stroke-width="2" rx="10" x="492" y="55" width="70" height="105"/>
+  <text x="502" y="78" font-size="15" font-weight="700" fill="#10233f">H3</text>
+  <text x="502" y="97" font-size="12" fill="#2c3e57">5V</text>
+  <text x="502" y="114" font-size="12" fill="#2c3e57">3.3V</text>
+  <text x="502" y="131" font-size="12" fill="#2c3e57">GND</text>
+  <text x="502" y="150" font-size="12" fill="#2c3e57">«Salidas»</text>
+
+  <!-- Motores -->
+  <rect fill="#fde8e8" stroke="#b42318" stroke-width="2" rx="10" x="575" y="55" width="390" height="165"/>
+  <text x="588" y="78" font-size="15" font-weight="700" fill="#10233f">Motores</text>
+  <text x="588" y="100" font-size="12" fill="#2c3e57">P2 · entrada alimentación motores</text>
+  <text x="588" y="118" font-size="11" font-weight="700" fill="#b42318">puentear 5V y GND desde H3</text>
+  <text x="588" y="140" font-size="12" fill="#2c3e57">P1 · Motor DC (L293)</text>
+  <text x="588" y="157" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">EN 33 · IN1 25 · IN2 26</text>
+  <text x="588" y="179" font-size="12" fill="#2c3e57">H2 · Servo</text><text x="660" y="179" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">GPIO32</text>
+  <text x="790" y="140" font-size="12" fill="#2c3e57">H1 · Paso a paso</text>
+  <text x="790" y="157" font-size="12" fill="#2c3e57">(ULN2003, 28BYJ-48)</text>
+  <text x="790" y="175" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">16 · 17 · 5 · 18</text>
+  <text x="790" y="195" font-size="12" fill="#2c3e57">LED1–LED4 = bobinas</text>
+
+  <!-- H4 + SW1 -->
+  <rect fill="#efe8fb" stroke="#6b3fb8" stroke-width="2" rx="10" x="35" y="175" width="130" height="80"/>
+  <text x="48" y="198" font-size="15" font-weight="700" fill="#10233f">H4 «libre»</text>
+  <text x="48" y="217" font-size="12" fill="#2c3e57">3.3V · IO · GND</text>
+  <text x="48" y="236" font-size="12" fill="#2c3e57">GPIO12 con SW1</text>
+  <text x="48" y="250" font-size="12" fill="#2c3e57">en «LIBRE»</text>
+
+  <!-- Display 7 seg -->
+  <rect fill="#e5effc" stroke="#1d5fbf" stroke-width="2" rx="10" x="180" y="175" width="300" height="70"/>
+  <text x="193" y="198" font-size="15" font-weight="700" fill="#10233f">Display 7 segmentos ×4</text>
+  <text x="193" y="217" font-size="12" fill="#2c3e57">TM1637</text>
+  <text x="193" y="235" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">CLK 27 · DIO 14</text>
+
+  <!-- Ultrasonido -->
+  <rect fill="#e3f4ea" stroke="#1f8a4c" stroke-width="2" rx="10" x="35" y="270" width="130" height="240"/>
+  <text x="48" y="293" font-size="15" font-weight="700" fill="#10233f">Ultrasonido</text>
+  <text x="48" y="311" font-size="12" fill="#2c3e57">HC-SR04</text>
+  <text x="48" y="333" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">Trig GPIO15</text>
+  <text x="48" y="351" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">Echo GPIO2</text>
+  <text x="48" y="373" font-size="11" font-weight="700" fill="#b42318">(el manual dice 12:</text>
+  <text x="48" y="388" font-size="11" font-weight="700" fill="#b42318"> es un error)</text>
+  <circle cx="100" cy="440" r="30" fill="#ffffff" stroke="#1f8a4c" stroke-width="2"/>
+  <circle cx="100" cy="440" r="18" fill="#d9e4dc" stroke="#1f8a4c"/>
+
+  <!-- Matriz RGB -->
+  <rect fill="#e5effc" stroke="#1d5fbf" stroke-width="2" rx="10" x="180" y="260" width="250" height="250"/>
+  <text x="193" y="283" font-size="15" font-weight="700" fill="#10233f">Matriz RGB 4×4</text>
+  <text x="193" y="301" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">GPIO13</text>
+  <text x="300" y="301" font-size="12" fill="#2c3e57">16 LED direccionables</text>
+  <g>
+    <circle cx="240" cy="335" r="15" fill="#ff5d5d"/><circle cx="285" cy="335" r="15" fill="#ffb347"/><circle cx="330" cy="335" r="15" fill="#ffe14d"/><circle cx="375" cy="335" r="15" fill="#7ddc6a"/>
+    <circle cx="240" cy="380" r="15" fill="#4dd6c1"/><circle cx="285" cy="380" r="15" fill="#4da3ff"/><circle cx="330" cy="380" r="15" fill="#8a6bff"/><circle cx="375" cy="380" r="15" fill="#e05de8"/>
+    <circle cx="240" cy="425" r="15" fill="#ff5d5d"/><circle cx="285" cy="425" r="15" fill="#ffb347"/><circle cx="330" cy="425" r="15" fill="#ffe14d"/><circle cx="375" cy="425" r="15" fill="#7ddc6a"/>
+    <circle cx="240" cy="470" r="15" fill="#4dd6c1"/><circle cx="285" cy="470" r="15" fill="#4da3ff"/><circle cx="330" cy="470" r="15" fill="#8a6bff"/><circle cx="375" cy="470" r="15" fill="#e05de8"/>
+  </g>
+
+  <!-- ESP32 -->
+  <rect fill="#10233f" stroke="#10233f" stroke-width="2" rx="10" x="455" y="250" width="190" height="170"/>
+  <text x="472" y="280" font-size="16" font-weight="700" fill="#ffffff">ESP32-WROOM-32D</text>
+  <text x="472" y="303" font-size="12" fill="#c9d8f0">2 núcleos · 240 MHz</text>
+  <text x="472" y="321" font-size="12" fill="#c9d8f0">520 KB RAM · 4 MB flash</text>
+  <text x="472" y="339" font-size="12" fill="#c9d8f0">WiFi 2,4 GHz · Bluetooth</text>
+  <text x="472" y="357" font-size="12" fill="#c9d8f0">GPIO a 3,3 V</text>
+  <rect x="472" y="372" width="156" height="34" rx="4" fill="none" stroke="#5b7aa8" stroke-dasharray="4 3"/>
+  <text x="484" y="394" font-size="11" fill="#9fb6d8">antena PCB</text>
+
+  <!-- USB / potencia -->
+  <rect fill="#eef0f3" stroke="#5b6474" stroke-width="2" rx="10" x="665" y="240" width="300" height="165"/>
+  <text x="678" y="263" font-size="15" font-weight="700" fill="#10233f">USB-C y alimentación</text>
+  <text x="678" y="284" font-size="12" fill="#2c3e57">CH340C · USB a serie (COM)</text>
+  <text x="678" y="302" font-size="12" fill="#2c3e57">AMS1117 · regulador 3,3 V</text>
+  <text x="678" y="320" font-size="12" fill="#2c3e57">Botón EN = reiniciar</text>
+  <text x="678" y="338" font-size="12" fill="#2c3e57">Botón BOOT = modo carga (GPIO0)</text>
+  <text x="678" y="360" font-size="12" fill="#2c3e57">Puerto serie: 115200 baudios</text>
+  <rect x="905" y="300" width="40" height="70" rx="12" fill="#ffffff" stroke="#5b6474" stroke-width="2"/>
+  <text x="912" y="392" font-size="12" fill="#2c3e57">USB-C</text>
+
+  <!-- OLED -->
+  <rect fill="#e5effc" stroke="#1d5fbf" stroke-width="2" rx="10" x="455" y="440" width="190" height="185"/>
+  <text x="468" y="463" font-size="15" font-weight="700" fill="#10233f">Pantalla OLED</text>
+  <text x="468" y="481" font-size="12" fill="#2c3e57">SSD1306 128×64 · I2C 0x3C</text>
+  <text x="468" y="499" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">SDA 21 · SCL 22</text>
+  <rect x="478" y="512" width="144" height="92" rx="4" fill="#0b1220"/>
+  <text x="490" y="545" font-size="13" fill="#8fd3ff" font-family="Consolas, Menlo, monospace">T: 29.0 C</text>
+  <text x="490" y="566" font-size="13" fill="#8fd3ff" font-family="Consolas, Menlo, monospace">Dist: 37 cm</text>
+  <text x="490" y="587" font-size="13" fill="#8fd3ff" font-family="Consolas, Menlo, monospace">ROMMEL</text>
+
+  <!-- LEDs -->
+  <rect fill="#fff1e0" stroke="#c26a00" stroke-width="2" rx="10" x="665" y="420" width="120" height="205"/>
+  <text x="678" y="443" font-size="15" font-weight="700" fill="#10233f">LEDs</text>
+  <circle cx="690" cy="470" r="8" fill="#2f7bff"/><text x="705" y="474" font-size="12" fill="#2c3e57">Azul</text><text x="740" y="474" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">19</text>
+  <circle cx="690" cy="497" r="8" fill="#ffd21f"/><text x="705" y="501" font-size="12" fill="#2c3e57">Amar.</text><text x="740" y="501" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">3</text>
+  <circle cx="690" cy="524" r="8" fill="#ff3b3b"/><text x="705" y="528" font-size="12" fill="#2c3e57">Rojo</text><text x="740" y="528" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">1</text>
+  <circle cx="690" cy="551" r="8" fill="#22c55e"/><text x="705" y="555" font-size="12" fill="#2c3e57">Verde</text><text x="740" y="555" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">23</text>
+  <text x="678" y="582" font-size="11" font-weight="700" fill="#b42318">1 y 3 = TX/RX</text>
+  <text x="678" y="598" font-size="11" font-weight="700" fill="#b42318">del puerto serie</text>
+
+  <!-- Relé -->
+  <rect fill="#fff1e0" stroke="#c26a00" stroke-width="2" rx="10" x="800" y="420" width="165" height="205"/>
+  <text x="813" y="443" font-size="15" font-weight="700" fill="#10233f">Relé</text>
+  <text x="813" y="462" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">GPIO0</text>
+  <text x="813" y="481" font-size="12" fill="#2c3e57">SRD-03VDC-SL-C</text>
+  <text x="813" y="499" font-size="12" fill="#2c3e57">10 A · 250 VAC</text>
+  <text x="813" y="517" font-size="12" fill="#2c3e57">bornera NA · C · NC</text>
+  <rect x="830" y="535" width="105" height="70" rx="6" fill="#3d7be0"/>
+  <text x="848" y="576" font-size="13" font-weight="700" fill="#ffffff">SONGLE</text>
+
+  <!-- Botones -->
+  <rect fill="#efe8fb" stroke="#6b3fb8" stroke-width="2" rx="10" x="180" y="525" width="250" height="100"/>
+  <text x="193" y="548" font-size="15" font-weight="700" fill="#10233f">Cruz de 5 botones</text>
+  <text x="193" y="567" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">GPIO34 (analógico)</text>
+  <text x="193" y="585" font-size="12" fill="#2c3e57">SW2 en «BOTONES»</text>
+  <g fill="#ffffff" stroke="#6b3fb8" stroke-width="2">
+    <rect x="365" y="550" width="16" height="16" rx="3"/><rect x="345" y="570" width="16" height="16" rx="3"/>
+    <rect x="365" y="570" width="16" height="16" rx="3"/><rect x="385" y="570" width="16" height="16" rx="3"/>
+    <rect x="365" y="590" width="16" height="16" rx="3"/>
+  </g>
+
+  <!-- IR -->
+  <rect fill="#efe8fb" stroke="#6b3fb8" stroke-width="2" rx="10" x="35" y="525" width="130" height="100"/>
+  <text x="48" y="548" font-size="15" font-weight="700" fill="#10233f">Receptor IR</text>
+  <text x="48" y="567" font-size="12" font-weight="700" fill="#10233f" font-family="Consolas, Menlo, monospace">GPIO34</text>
+  <text x="48" y="585" font-size="12" fill="#2c3e57">SW2 en</text>
+  <text x="48" y="601" font-size="12" fill="#2c3e57">«RECEPTOR»</text>
+
+  <!-- Leyenda -->
+  <g transform="translate(30,660)" font-size="12" fill="#2c3e57">
+    <rect width="14" height="14" rx="3" fill="#e3f4ea" stroke="#1f8a4c" stroke-width="2"/><text x="20" y="12">Sensores</text>
+    <rect x="100" width="14" height="14" rx="3" fill="#fff1e0" stroke="#c26a00" stroke-width="2"/><text x="120" y="12">Salidas</text>
+    <rect x="190" width="14" height="14" rx="3" fill="#fde8e8" stroke="#b42318" stroke-width="2"/><text x="210" y="12">Motores</text>
+    <rect x="285" width="14" height="14" rx="3" fill="#e5effc" stroke="#1d5fbf" stroke-width="2"/><text x="305" y="12">Pantallas / luz</text>
+    <rect x="420" width="14" height="14" rx="3" fill="#efe8fb" stroke="#6b3fb8" stroke-width="2"/><text x="440" y="12">Entradas</text>
+    <rect x="515" width="14" height="14" rx="3" fill="#eef0f3" stroke="#5b6474" stroke-width="2"/><text x="535" y="12">Alimentación</text>
+    <text x="640" y="12" fill="#b42318" font-weight="700">Rojo = corrección a la documentación</text>
+  </g>
+</svg>

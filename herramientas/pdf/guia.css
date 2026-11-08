@@ -1,0 +1,34 @@
+@page { size: A4; margin: 18mm 16mm 20mm 16mm;
+  @bottom-center { content: "Guía de usuario · Kit educativo BMX-01 · pág. " counter(page) " de " counter(pages); font-size: 8.5pt; color: #2c3e57; }
+}
+@page :first { @bottom-center { content: none; } }
+html { font-family: "DejaVu Sans", "Segoe UI", Arial, sans-serif; font-size: 10pt; color: #1b2433; line-height: 1.45; }
+header#title-block-header { text-align: center; padding: 70mm 0 0; height: 230mm; page-break-after: always;
+  background: linear-gradient(#0b2a5b, #163d7a); color: #fff; margin: -18mm -16mm 0; }
+header h1.title { font-size: 30pt; margin: 0 0 6mm; color: #fff; border: none; }
+header p.subtitle { font-size: 15pt; color: #ffd166; margin: 0 0 30mm; }
+header p.author, header p.date { color: #c9d8f0; font-size: 11pt; margin: 2mm 0; }
+h1 { font-size: 17pt; color: #0b2a5b; border-bottom: 3px solid #ffd166; padding-bottom: 2mm; margin-top: 9mm; page-break-before: always; }
+h1:first-of-type { page-break-before: avoid; }
+h2 { font-size: 12.5pt; color: #163d7a; margin-top: 6mm; }
+img { max-width: 100%; display: block; margin: 3mm auto; border-radius: 4px; }
+figure { margin: 3mm 0; page-break-inside: avoid; }
+figcaption { text-align: center; font-size: 8.5pt; color: #2c3e57; }
+table { border-collapse: collapse; width: 100%; margin: 3mm 0; font-size: 8.8pt; page-break-inside: auto; }
+th { background: #0b2a5b; color: #fff; text-align: left; padding: 1.6mm 2mm; }
+td { border-bottom: 1px solid #d9e0ea; padding: 1.4mm 2mm; vertical-align: top; }
+tr:nth-child(even) td { background: #f4f7fb; }
+tr { page-break-inside: avoid; }
+code { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: 8.6pt; background: #eef2f8; padding: 0 1mm; border-radius: 2px; }
+div.sourceCode, pre { background: #f2f5fa !important; color: #10233f !important; border: 1px solid #c9d3e0; border-left: 4px solid #1d5fbf;
+  padding: 3mm; border-radius: 4px; font-size: 8.6pt; page-break-inside: avoid; white-space: pre-wrap; margin: 3mm 0; }
+div.sourceCode pre { border: none; padding: 0; margin: 0; }
+pre code, pre code span { background: none !important; color: #10233f !important; padding: 0; font-weight: 400 !important; font-style: normal !important; }
+blockquote { margin: 3mm 0; padding: 2mm 4mm; border-left: 4px solid #ffd166; background: #fff8e6; color: #2a2108 !important; }
+blockquote p, blockquote em, blockquote strong { color: #2a2108 !important; }
+code { color: #10233f !important; background: #eef1f6 !important; }
+a { color: #1d5fbf; text-decoration: none; }
+nav#TOC { page-break-after: always; }
+nav#TOC ul { list-style: none; padding-left: 4mm; }
+nav#TOC > ul > li { margin-top: 1.5mm; font-weight: 700; }
+nav#TOC li li { font-weight: 400; }

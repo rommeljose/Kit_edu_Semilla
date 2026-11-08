@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kit Semilla BMX-01</title>
+<meta name="description" content="Guía, diagnóstico y ejemplos para el Kit Educativo en Electrónica BMX-01 (ESP32) del programa Semilleros Científicos, Venezuela.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b2a5b'/%3E%3Cpath d='M16 6c5 4 6 10 0 20-6-10-5-16 0-20z' fill='%23ffd166'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f6f8fc; --surface:#ffffff; --surface-2:#eef2f8; --text:#16202e; --muted:#5b6678;
+  --brand:#0b2a5b; --brand-2:#1d5fbf; --accent:#ffd166; --ok:#1f8a4c; --warn:#b42318;
+  --line:#d9e0ea; --code-bg:#0f1b2d; --code-text:#e6edf7; --shadow:0 1px 2px rgba(16,35,63,.06),0 8px 24px rgba(16,35,63,.08);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0b1220; --surface:#121b2c; --surface-2:#18233a; --text:#e6ecf5; --muted:#9aa7bb;
+    --brand:#8fb8ff; --brand-2:#8fb8ff; --accent:#ffd166; --ok:#5dd39e; --warn:#ff8a80;
+    --line:#26324a; --code-bg:#070d18; --code-text:#e6edf7; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0b1220; --surface:#121b2c; --surface-2:#18233a; --text:#e6ecf5; --muted:#9aa7bb;
+  --brand:#8fb8ff; --brand-2:#8fb8ff; --accent:#ffd166; --ok:#5dd39e; --warn:#ff8a80;
+  --line:#26324a; --code-bg:#070d18; --code-text:#e6edf7; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,sans-serif;-webkit-text-size-adjust:100%}
+a{color:var(--brand-2)}
+img{max-width:100%;height:auto;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+
+/* Barra superior */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px;height:56px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--text);text-decoration:none;white-space:nowrap}
+.logo svg{flex:none}
+.nav{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px;padding:6px 10px;border-radius:8px;white-space:nowrap}
+.nav a:hover{background:var(--surface-2);color:var(--text)}
+.theme{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--text);border-radius:8px;width:36px;height:36px;cursor:pointer;font-size:16px}
+@media (max-width:760px){.nav{display:none}}
+
+/* Portada */
+.hero{background:linear-gradient(160deg,#0b2a5b 0%,#163d7a 60%,#1d5fbf 100%);color:#fff;padding:56px 0 64px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+.eyebrow{display:inline-block;background:rgba(255,209,102,.16);color:#ffd166;border:1px solid rgba(255,209,102,.4);border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600;letter-spacing:.02em}
+.hero h1{font-size:clamp(30px,5vw,48px);line-height:1.1;margin:14px 0 14px;letter-spacing:-.02em}
+.hero p.lead{font-size:18px;color:#d5e2f7;margin:0 0 24px;max-width:56ch}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:10px;font-weight:600;text-decoration:none;font-size:15px}
+.btn-primary{background:#ffd166;color:#10233f}
+.btn-primary:hover{background:#ffdb85}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.3)}
+.btn-ghost:hover{background:rgba(255,255,255,.16)}
+.hero-photo{border-radius:16px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.35);transform:rotate(-1.2deg)}
+.stats{display:flex;flex-wrap:wrap;gap:22px;margin-top:28px;color:#d5e2f7;font-size:14px}
+.stats b{display:block;color:#fff;font-size:22px}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero-photo{transform:none}}
+
+/* Secciones */
+section{padding:56px 0;border-bottom:1px solid var(--line)}
+section h2{font-size:clamp(24px,3.2vw,32px);margin:0 0 8px;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0 0 28px;max-width:70ch}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
+.card h3{margin:0 0 6px;font-size:17px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.ico{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;margin-bottom:12px;background:var(--surface-2);color:var(--brand-2)}
+
+/* Tablas */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:560px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--surface-2);font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+tr:last-child td{border-bottom:none}
+td code,p code,li code{font-family:ui-monospace,Consolas,Menlo,monospace;background:var(--surface-2);padding:1px 6px;border-radius:5px;font-size:.92em}
+.fix{color:var(--warn);font-weight:600}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:color-mix(in srgb,var(--warn) 14%,transparent);color:var(--warn)}
+.tag.ok{background:color-mix(in srgb,var(--ok) 14%,transparent);color:var(--ok)}
+
+/* Diagramas */
+.diagram{background:#fff;border-radius:14px;border:1px solid var(--line);padding:8px;box-shadow:var(--shadow)}
+.diagram + .diagram{margin-top:20px}
+figure{margin:0}
+figcaption{color:var(--muted);font-size:14px;margin-top:8px;text-align:center}
+
+/* Galería */
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.gallery button{all:unset;cursor:zoom-in;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--surface);display:block}
+.gallery button:focus-visible{outline:3px solid var(--brand-2);outline-offset:2px}
+.gallery img{aspect-ratio:3/4;object-fit:cover;width:100%;transition:transform .25s}
+.gallery button:hover img{transform:scale(1.04)}
+.gallery .wide{grid-column:span 2}
+.gallery .wide img{aspect-ratio:4/3}
+.gallery span{display:block;padding:8px 10px;font-size:13px;color:var(--muted)}
+@media (max-width:480px){.gallery .wide{grid-column:span 1}}
+dialog{border:none;padding:0;background:transparent;max-width:min(96vw,1200px)}
+dialog::backdrop{background:rgba(5,10,20,.85)}
+dialog img{max-height:86vh;width:auto;margin:auto;border-radius:10px}
+dialog p{color:#fff;text-align:center;margin:10px 0 0}
+dialog button{position:fixed;top:14px;right:16px;background:#fff;color:#10233f;border:none;border-radius:999px;width:40px;height:40px;font-size:20px;cursor:pointer}
+
+/* Código */
+pre{background:var(--code-bg);color:var(--code-text);padding:16px;border-radius:12px;overflow-x:auto;font:14px/1.5 ui-monospace,Consolas,Menlo,monospace;margin:0}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.steps li{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px 14px 56px;position:relative}
+.steps li::before{content:counter(s);position:absolute;left:14px;top:12px;width:30px;height:30px;border-radius:50%;background:var(--brand);color:var(--bg);display:grid;place-items:center;font-weight:700;font-size:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+@media (max-width:860px){.two{grid-template-columns:1fr}}
+.note{border-left:4px solid var(--accent);background:color-mix(in srgb,var(--accent) 12%,var(--surface));padding:12px 16px;border-radius:0 10px 10px 0;margin:16px 0 0;font-size:15px}
+
+/* Descargas */
+.download{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center}
+.download .pdf{width:64px;height:80px;border-radius:8px;background:linear-gradient(160deg,#0b2a5b,#1d5fbf);color:#ffd166;display:grid;place-items:center;font-weight:800;font-size:15px;box-shadow:var(--shadow)}
+@media (max-width:600px){.download{grid-template-columns:1fr}.download .pdf{display:none}}
+footer{padding:36px 0;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#">
+      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0b2a5b"/><path d="M16 6c5 4 6 10 0 20-6-10-5-16 0-20z" fill="#ffd166"/><path d="M16 12v14" stroke="#0b2a5b" stroke-width="2"/></svg>
+      Kit Semilla
+    </a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#que-es">El kit</a><a href="#caracteristicas">Características</a><a href="#fotos">Fotos</a>
+      <a href="#diagramas">Diagramas</a><a href="#pines">Pines</a><a href="#empezar">Empezar</a><a href="#descargas">Descargas</a>
+    </nav>
+    <button class="theme" id="theme" aria-label="Cambiar tema claro u oscuro" title="Tema claro/oscuro">◐</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Semilleros Científicos · Venezuela</span>
+      <h1>Kit educativo BMX-01 con ESP32</h1>
+      <p class="lead">Una placa "todo en uno" para aprender programación, electrónica e Internet de las Cosas. Aquí encontrarás qué trae, cómo funciona, el mapa de pines <strong>verificado</strong>, ejemplos listos para usar y una guía de usuario para descargar.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="guia/Guia_de_usuario_BMX-01.pdf" download>⬇ Descargar la guía (PDF)</a>
+        <a class="btn btn-ghost" href="https://github.com/rommeljose/Kit_edu_Semilla">Ver el código en GitHub</a>
+      </div>
+      <div class="stats">
+        <div><b>240 MHz</b>2 núcleos</div>
+        <div><b>WiFi + BT</b>integrados</div>
+        <div><b>20+</b>componentes</div>
+        <div><b>15/15</b>pruebas OK</div>
+      </div>
+    </div>
+    <div class="hero-photo"><img src="img/placa_frente.jpg" alt="Placa BMX-01 vista de frente: ESP32, matriz RGB, display de 7 segmentos, OLED, relé, sensor ultrasónico y motores" width="1600" height="1205"></div>
+  </div>
+</div>
+
+<main>
+<section id="que-es">
+  <div class="wrap">
+    <h2>¿Qué es este kit?</h2>
+    <p class="sub">El <strong>Kit Educativo en Electrónica</strong> lo distribuye gratuitamente el programa <strong>Semilleros Científicos</strong> del Ministerio del Poder Popular para Ciencia y Tecnología (Mincyt) y la Gran Misión Ciencia, Tecnología e Innovación. Su corazón es la placa <strong>BMX-01</strong>, fabricada en Venezuela por <em>Sistemas Tecnológicos</em>, que trae un ESP32 y todos los periféricos ya soldados: solo hace falta un cable USB-C.</p>
+    <div class="grid g3">
+      <div class="card"><div class="ico">⌨</div><h3>Programar</h3><p>Arduino (C/C++) o MicroPython, con resultados visibles al instante: luces, sonido, pantallas y movimiento.</p></div>
+      <div class="card"><div class="ico">⚡</div><h3>Entender la electrónica</h3><p>Entradas y salidas digitales, señales analógicas, PWM, buses I2C y 1-Wire, relés y motores.</p></div>
+      <div class="card"><div class="ico">📡</div><h3>Conectar al mundo</h3><p>WiFi y Bluetooth para hacer estaciones meteorológicas, domótica y control desde el teléfono.</p></div>
+      <div class="card"><div class="ico">📊</div><h3>Hacer ciencia</h3><p>Medir temperatura, luz y distancia, guardar los datos y graficarlos en clase.</p></div>
+    </div>
+    <div class="two" style="margin-top:28px">
+      <figure><img src="img/caja_contenido.jpg" alt="Lateral de la caja: contenido del kit" style="border-radius:12px" width="860" height="745"><figcaption>Contenido de la caja</figcaption></figure>
+      <div class="card">
+        <h3>En la caja</h3>
+        <ul style="margin:8px 0 0;padding-left:20px;color:var(--muted)">
+          <li>Placa BMX-01 (Kit Educativo en Electrónica)</li>
+          <li>Motor DC</li>
+          <li>Motor paso a paso 28BYJ-48</li>
+          <li>Cable USB tipo C</li>
+          <li>Manual de uso (tarjeta con la leyenda de pines)</li>
+        </ul>
+        <p class="note">Material educativo gratuito: <strong>prohibida su venta</strong>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="caracteristicas">
+  <div class="wrap">
+    <h2>Características</h2>
+    <p class="sub">Todo lo que trae la placa, agrupado por función.</p>
+    <div class="grid g4">
+      <div class="card"><h3>🧠 Cerebro</h3><p>ESP32-WROOM-32D · 2 núcleos a 240 MHz · 520 KB de RAM · 4 MB de flash · WiFi y Bluetooth (clásico y BLE)</p></div>
+      <div class="card"><h3>🔌 USB y energía</h3><p>USB-C con CH340C (puerto COM) · regulador AMS1117 de 3,3 V · botones EN y BOOT</p></div>
+      <div class="card"><h3>🖥 Pantallas</h3><p>OLED de 128×64 (I2C) · display de 7 segmentos ×4 (TM1637) · matriz RGB 4×4 · 4 LED de colores</p></div>
+      <div class="card"><h3>🌡 Sensores</h3><p>Temperatura DS18B20 · luz (LDR) · inclinación · potenciómetro · ultrasonido HC-SR04 · receptor infrarrojo</p></div>
+      <div class="card"><h3>🔊 Salidas</h3><p>Bocina · relé de 10 A / 250 VAC · cabezal H4 para tus propios circuitos</p></div>
+      <div class="card"><h3>⚙ Motores</h3><p>Motor DC con L293 · paso a paso con ULN2003 · conector para servo</p></div>
+      <div class="card"><h3>🎮 Entradas</h3><p>Cruz de 5 botones en un solo pin analógico (compartido con el receptor IR)</p></div>
+      <div class="card"><h3>🧪 Probado</h3><p>Cada pin se verificó con el programa de diagnóstico de este proyecto. Se encontraron y corrigieron 3 erratas.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="fotos">
+  <div class="wrap">
+    <h2>Fotos</h2>
+    <p class="sub">Toca una foto para verla en grande.</p>
+    <div class="gallery" id="gallery">
+      <button class="wide" data-src="img/placa_frente.jpg" data-cap="Placa BMX-01, vista frontal"><img loading="lazy" src="img/placa_frente.jpg" alt="Placa vista frontal"><span>Vista frontal</span></button>
+      <button class="wide" data-src="img/placa_reverso.jpg" data-cap="Reverso: leyenda de pines y logos (el QR está pixelado)"><img loading="lazy" src="img/placa_reverso.jpg" alt="Placa vista trasera con la leyenda"><span>Reverso y leyenda</span></button>
+      <button data-src="img/tarjeta_leyenda.jpg" data-cap="Tarjeta del manual con la leyenda de pines"><img loading="lazy" src="img/tarjeta_leyenda.jpg" alt="Tarjeta de leyenda"><span>Tarjeta del manual</span></button>
+      <button data-src="img/det_esp32.jpg" data-cap="Módulo ESP32-WROOM-32D de Espressif"><img loading="lazy" src="img/det_esp32.jpg" alt="Módulo ESP32"><span>ESP32-WROOM-32D</span></button>
+      <button data-src="img/det_oled.jpg" data-cap="Pantalla OLED SSD1306 (I2C)"><img loading="lazy" src="img/det_oled.jpg" alt="Pantalla OLED"><span>Pantalla OLED</span></button>
+      <button data-src="img/det_sensores.jpg" data-cap="Sensores de luz (LDR) y temperatura (DS18B20)"><img loading="lazy" src="img/det_sensores.jpg" alt="Sensores"><span>Sensores</span></button>
+      <button data-src="img/det_bocina.jpg" data-cap="Bocina, switch SW1 (BOCINA / LIBRE) y cabezal H4"><img loading="lazy" src="img/det_bocina.jpg" alt="Bocina y switch SW1"><span>Bocina y SW1</span></button>
+      <button data-src="img/det_botones.jpg" data-cap="Cruz de 5 botones y switch SW2"><img loading="lazy" src="img/det_botones.jpg" alt="Cruz de botones"><span>Botones</span></button>
+      <button data-src="img/det_motores.jpg" data-cap="Controladores de motores: L293 (DC) y ULN2003 (paso a paso)"><img loading="lazy" src="img/det_motores.jpg" alt="L293 y ULN2003"><span>L293 y ULN2003</span></button>
+      <button data-src="img/det_usb.jpg" data-cap="USB-C, CH340C, regulador AMS1117 y botón EN"><img loading="lazy" src="img/det_usb.jpg" alt="USB y CH340"><span>USB-C y CH340C</span></button>
+      <button data-src="img/det_tm1637.jpg" data-cap="Controlador TM1637 del display de 7 segmentos"><img loading="lazy" src="img/det_tm1637.jpg" alt="Chip TM1637"><span>TM1637</span></button>
+    </div>
+  </div>
+</section>
+
+<section id="diagramas">
+  <div class="wrap">
+    <h2>Diagramas</h2>
+    <p class="sub">Mapa de la placa con los pines GPIO comprobados, y cómo se alimentan los motores. En rojo, lo que corrige o completa la documentación original.</p>
+    <figure class="diagram"><img src="img/mapa_placa.svg" alt="Mapa de la placa BMX-01 con los periféricos y sus pines GPIO" width="1000" height="700"></figure>
+    <figure class="diagram"><img src="img/alimentacion.svg" alt="Diagrama de alimentación: USB-C, CH340, AMS1117, ESP32, y puente del cabezal H3 a la bornera P2 para los motores; switches SW1 y SW2" width="1000" height="430"></figure>
+  </div>
+</section>
+
+<section id="pines">
+  <div class="wrap">
+    <h2>Mapa de pines verificado</h2>
+    <p class="sub">Comprobado uno por uno sobre la placa real. <span class="tag">corrección</span> marca las diferencias con la documentación.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Periférico</th><th>GPIO</th><th>Notas</th></tr></thead>
+        <tbody>
+          <tr><td>LED azul / verde</td><td><code>19</code> / <code>23</code></td><td></td></tr>
+          <tr><td>LED rojo / amarillo</td><td><code>1</code> / <code>3</code></td><td>Son TX y RX del puerto serie</td></tr>
+          <tr><td>Bocina</td><td><code>12</code></td><td><span class="tag">corrección</span> Solo con el <strong>switch SW1 en «BOCINA»</strong></td></tr>
+          <tr><td>Relé</td><td><code>0</code></td><td>Pin de arranque: puede hacer clic al reiniciar</td></tr>
+          <tr><td>Matriz RGB 4×4</td><td><code>13</code></td><td>16 LED en zigzag</td></tr>
+          <tr><td>Pantalla OLED</td><td><code>SDA 21</code> · <code>SCL 22</code></td><td>SSD1306, dirección I2C 0x3C</td></tr>
+          <tr><td>Display de 7 segmentos</td><td><code>CLK 27</code> · <code>DIO 14</code></td><td>TM1637</td></tr>
+          <tr><td>Temperatura</td><td><code>4</code></td><td>DS18B20 digital (1-Wire)</td></tr>
+          <tr><td>Inclinación · Luz · Potenciómetro</td><td><code>39</code> · <code>35</code> · <code>36</code></td><td>Luz y potenciómetro son analógicos (0–4095)</td></tr>
+          <tr><td>Ultrasonido HC-SR04</td><td><code>Trig 15</code> · <code>Echo 2</code></td><td><span class="tag">corrección</span> El manual dice Echo 12</td></tr>
+          <tr><td>Botones / receptor IR</td><td><code>34</code></td><td>Se elige con el switch SW2</td></tr>
+          <tr><td>Motor paso a paso</td><td><code>16 · 17 · 5 · 18</code></td><td>ULN2003 → conector H1</td></tr>
+          <tr><td>Motor DC</td><td><code>EN 33</code> · <code>IN 25 / 26</code></td><td>L293 → bornera P1</td></tr>
+          <tr><td>Servo</td><td><code>32</code></td><td>Conector H2</td></tr>
+          <tr><td>Alimentación de los motores</td><td>—</td><td><span class="tag">corrección</span> <strong>Puentear 5V y GND de H3 a P2</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="empezar">
+  <div class="wrap">
+    <h2>Primeros pasos</h2>
+    <p class="sub">De la caja al primer LED parpadeando en unos 15 minutos.</p>
+    <div class="two">
+      <ol class="steps">
+        <li>Instala <a href="https://www.arduino.cc/en/software">Arduino IDE 2</a>. Si Windows no reconoce la placa, instala el controlador <strong>CH340</strong>.</li>
+        <li>En <em>Preferencias</em>, agrega la URL de placas de Espressif e instala <strong>esp32</strong> (3.x) desde el Gestor de placas.</li>
+        <li>Elige la placa <strong>ESP32 Dev Module</strong> y el puerto <strong>COM</strong> de la placa.</li>
+        <li>Abre <code>ejemplos/01_parpadeo</code> y pulsa <strong>Subir</strong>. ¡El LED azul parpadea!</li>
+        <li>Para los motores: puentea <strong>5V y GND</strong> de H3 a P2. Para la bocina: <strong>SW1 en «BOCINA»</strong>.</li>
+      </ol>
+      <div>
+<pre><code>// 01 · Parpadeo: LED azul en GPIO19
+const int LED_AZUL = 19;
+
+void setup() {
+  pinMode(LED_AZUL, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(LED_AZUL, HIGH);
+  delay(500);
+  digitalWrite(LED_AZUL, LOW);
+  delay(500);
+}</code></pre>
+        <p class="note">URL de placas: <code>https://espressif.github.io/arduino-esp32/package_esp32_index.json</code></p>
+      </div>
+    </div>
+
+    <h3 style="margin:40px 0 12px">Ejemplos incluidos</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Ejemplo</th><th>Qué hace</th><th>Aprendes</th></tr></thead>
+        <tbody>
+          <tr><td><code>01_parpadeo</code></td><td>Hace parpadear el LED azul</td><td>Salidas digitales</td></tr>
+          <tr><td><code>02_potenciometro_led</code></td><td>El potenciómetro regula el brillo del LED verde</td><td>Lectura analógica y PWM</td></tr>
+          <tr><td><code>03_bocina_melodia</code></td><td>Toca Do-Re-Mi…</td><td>Tonos</td></tr>
+          <tr><td><code>04_temperatura_oled</code></td><td>Termómetro en la pantalla OLED</td><td>Buses 1-Wire e I2C</td></tr>
+          <tr><td><code>05_distancia_7seg</code></td><td>Medidor de distancia en el display</td><td>Ultrasonido</td></tr>
+          <tr><td><code>06_servo_potenciometro</code></td><td>El servo sigue al potenciómetro</td><td>Pulsos de servo</td></tr>
+          <tr><td><code>07_matriz_arcoiris</code></td><td>Arcoíris animado en la matriz</td><td>LED direccionables</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin:40px 0 12px">Programa de diagnóstico</h3>
+    <p style="margin:0 0 12px;color:var(--muted)"><code>diagnostico_bmx01/</code> prueba toda la placa: 15 pruebas automáticas, un menú por el monitor serie, el monitor de sensores en vivo, nombres que pasan por la matriz y el display, un sensor de estacionamiento, un juego con los botones y una <strong>página web de control</strong> desde el teléfono (red WiFi <code>BMX01-Diagnostico</code>).</p>
+  </div>
+</section>
+
+<section id="descargas">
+  <div class="wrap">
+    <h2>Descargas</h2>
+    <div class="grid" style="gap:14px">
+      <div class="card download">
+        <div class="pdf">PDF</div>
+        <div><h3>Guía de usuario del kit BMX-01</h3><p>18 páginas: características, mapa de pines, instalación, ejemplos, diagnóstico, solución de problemas y erratas.</p></div>
+        <a class="btn btn-primary" href="guia/Guia_de_usuario_BMX-01.pdf" download>⬇ Descargar</a>
+      </div>
+      <div class="card download">
+        <div class="pdf" style="font-size:13px">ZIP</div>
+        <div><h3>Todo el proyecto</h3><p>Programa de diagnóstico, 7 ejemplos, herramientas, bitácora de trabajo y diagramas.</p></div>
+        <a class="btn btn-primary" href="https://github.com/rommeljose/Kit_edu_Semilla/archive/refs/heads/main.zip">⬇ Descargar</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Desarrollo y ejemplos: <strong>Licenciado Físico Rommel Contreras</strong> (<a href="https://github.com/rommeljose">@rommeljose</a>) · proyecto Kit_edu_Semilla · código MIT, documentación CC BY-SA 4.0</span>
+    <span>Kit: Semilleros Científicos · Mincyt · hecho en Venezuela</span>
+  </div>
+</footer>
+
+<dialog id="visor" aria-label="Foto ampliada">
+  <button id="cerrar" aria-label="Cerrar">✕</button>
+  <img id="visor-img" alt="">
+  <p id="visor-cap"></p>
+</dialog>
+
+<script>
+(function () {
+  // Tema claro/oscuro (preferencia guardada solo en este navegador)
+  var root = document.documentElement, btn = document.getElementById('theme');
+  try { var t = localStorage.getItem('tema'); if (t) root.setAttribute('data-theme', t); } catch (e) {}
+  btn.addEventListener('click', function () {
+    var oscuro = root.getAttribute('data-theme') === 'dark' ||
+      (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+    var nuevo = oscuro ? 'light' : 'dark';
+    root.setAttribute('data-theme', nuevo);
+    try { localStorage.setItem('tema', nuevo); } catch (e) {}
+  });
+  // Visor de fotos
+  var d = document.getElementById('visor'), im = document.getElementById('visor-img'), cap = document.getElementById('visor-cap');
+  document.getElementById('gallery').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    im.src = b.dataset.src; im.alt = b.dataset.cap; cap.textContent = b.dataset.cap;
+    if (d.showModal) d.showModal(); else window.open(b.dataset.src);
+  });
+  document.getElementById('cerrar').addEventListener('click', function () { d.close(); });
+  d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
+})();
+</script>
+</body>
+</html>

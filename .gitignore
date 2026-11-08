@@ -1,0 +1,9 @@
+# Compilados
+build/
+# Respaldo del firmware de fábrica (software del fabricante: no se redistribuye)
+respaldo/
+# Registros del puerto serie (contienen redes WiFi y equipos Bluetooth cercanos)
+herramientas/serie.log
+herramientas/cmd.fifo
+diagnostico_bmx01/ultimo_diagnostico.txt
+__pycache__/
